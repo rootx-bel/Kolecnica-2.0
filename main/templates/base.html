@@ -26,8 +26,8 @@
                     </li>
                     {% if  user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Построить маршрут</a>
-                        <a class="nav-link" href="#">Геопортал</a>
+                        <a class="nav-link" href="/map">Построить маршрут</a>
+                        <a class="nav-link" href="/geo">Геопортал</a>
                     </li>
                     {% endif %}
                     <li class="nav-item dropdown">
@@ -39,8 +39,11 @@
                         {% endif %}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
+                        {% if  not user.is_authenticated %}
                         <li><a class="dropdown-item" href="/login/">Вход</a></li>
+                        {% else %}
                         <li><a class="dropdown-item" href="/login/logout">Выход</a></li>
+                        {% endif %}
                         </ul>
                     </li>
                     </ul>

@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Geom, Flags
 
-# Register your models here.
+admin.site.register(Geom)
+admin.site.register(Flags)
