@@ -4,21 +4,4 @@
 {% for i in data %}
 <h1>{{ i.ids }}:{{ i.keypoints }}</h1>
 {% endfor %}
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-    <script type="text/javascript">
-        ymaps.ready(init);
-
-        function init () {
-            var myMap = new ymaps.Map('map', {
-                center: [55.76, 37.64], 
-                zoom: 10
-            });
-        }
-    </script>
-</head>
-<body>
-    <div id="map"></div>
-</body>
 {% endblock body %}
