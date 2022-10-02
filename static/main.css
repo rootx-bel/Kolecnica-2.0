@@ -1,0 +1,32 @@
+aside {
+    float: left;
+    background: #2c2c2c;
+    width: 20%;
+    padding: 2.5%;
+    color: #fff;
+    height: 100vh;
+    border-right: 5px solid #4d4d4d;
+}
+
+aside h3 {
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li {
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    font-size: 20px;
+    transition: transform 0.6s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: darkorange;
+    text-decoration: none;
+    transform: scale(1.05);
+}

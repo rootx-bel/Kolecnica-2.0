@@ -1,7 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link href="{% static "/main.css" %}" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
+{% endblock head %}
+
 {% block body %}
-<h3 style="margin-top: 100px;">Geoportal</h3>
+
+<aside>
+    <h3>Навигация</h3>
+    <ul>
+        <a href=""><li>N</li></a>
+        <a href=""><li>N</li></a>
+        <a href=""><li>N</li></a>
+        <a href=""><li>N</li></a>
+    </ul>
+</aside>
+<main>
+
+
+{% comment %} <h3 style="margin-top: 10px;">Geoportal</h3>
 {% for i in data %}
 <h1>{{ i.ids }}:{{ i.keypoints }}</h1>
-{% endfor %}
+{% endfor %} {% endcomment %}
+
+
+</main>
 {% endblock body %}
