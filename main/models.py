@@ -3,7 +3,7 @@ from django.db import models
 class Geom(models.Model):
     ids = models.IntegerField(default=0, name="ids")
     keypoints = models.TextField(max_length=20000, name="keypoints", default="")
-    ids = models.IntegerField(default=0)
+    keypointsplaned = models.TextField(max_length=20000, name="keypointsplaned", default="")
     
     def __str__(self):
         return str(self.ids)
@@ -11,6 +11,17 @@ class Geom(models.Model):
     class Meta:
         verbose_name = "История"
         verbose_name_plural = "История"
+
+class Route(models.Model):
+    ids = models.IntegerField(default=0, name="ids")
+    points = models.TextField(max_length=20000, name="points", default="")
+    
+    def __str__(self):
+        return str(self.ids)
+
+    class Meta:
+        verbose_name = "Маршрут"
+        verbose_name_plural = "Маршрут"
 
 class Flags(models.Model):
     title = models.CharField(max_length=255)

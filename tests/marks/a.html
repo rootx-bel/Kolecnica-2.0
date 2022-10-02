@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+    <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="http://yandex.st/jquery/2.1.1/jquery.js" type="text/javascript"></script>  
+</head>
+<body>
+<style>
+	#map {
+		height: 250px;
+	}
+</style>
+<script>
+console.clear();
+ymaps.ready(init);
+
+
+function init() {
+
+
+    var myMap = new ymaps.Map("map", {
+            center: [53.187814, 50.113989],
+            zoom: 1
+    });
+
+    var coords = [];
+    var names = [];
+
+$.getJSON(
+        "geo.json",
+            function(data) {
+            for (var key in data) {
+                coords.push(data[key].fields.geo);
+                names.push(data[key].fields.name);
+            }
+
+    var myCollection = new ymaps.GeoObjectCollection({}, {preset: 'twirl#shopIcon'});
+        for (var i = 0, l = coords.length; i < l; i++) {
+            var _coords = JSON.parse(coords[i]);
+            myCollection.add(new ymaps.Placemark([parseFloat(_coords[0]),parseFloat(_coords[1])],
+            {
+                balloonContentHeader:names[i]
+            }));
+            //console.log(coords[i]);
+            console.log(_coords);
+        }
+        console.log(coords);
+        myMap.geoObjects.add(myCollection);
+        //myMap.setBounds(myCollection.getBounds());
+    }
+);
+}
+</script>
+<div id="map"></div>
+
+</body>
+</html>
