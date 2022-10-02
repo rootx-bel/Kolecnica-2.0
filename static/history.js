@@ -59,8 +59,7 @@
 
 
 
-var myMap, myCollection, ids, params, result, counter;
-
+var myMap, myCollection, ids, params, result, counter, res, idm;
 function httpGet(theUrl, params)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -68,6 +67,14 @@ function httpGet(theUrl, params)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
 
 ymaps.ready(function  () {
 	myMap = new ymaps.Map('ymapid', {
@@ -79,7 +86,7 @@ ymaps.ready(function  () {
 });
 
 function draw(ids){
-    result = httpGet('http://127.0.0.1/geo', ids);
+    result = httpGet('http://176.194.177.53:2121/geo', ids);
     $('#menu').empty();
     var rows = result.split(";");
 	var src_res='';
@@ -100,7 +107,9 @@ function draw(ids){
     }
     myMap.geoObjects.add(myCollection);
     myMap.setBounds(myCollection.getBounds());
-
+    //setTimeout(() => { ; }, 2000);
+    //sleep(2000);
+    //upd(result, ids);
     // $.ajax({
 	//     url:'/static/a.csv',
 	// 	success: function(data){
@@ -137,4 +146,15 @@ function go_point(id){
         item.balloon.open();
     }
     });	
+}
+
+function upd(res, idm){
+    if(res==httpGet('http://176.194.177.53:2121/geo', idm)){
+        //setTimeout(() => { ; }, 2000);
+        sleep(2000);
+        upd(res, idm);
+    }
+    else{
+        draw(idm);
+    }
 }
