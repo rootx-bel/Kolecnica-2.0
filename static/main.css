@@ -1,15 +1,22 @@
+geo {
+    position: fixed;
+    width: 100%;
+    height: 92%;
+}
+
 aside {
     float: left;
     background: #2c2c2c;
-    width: 20%;
+    width: 15%;
     padding: 2.5%;
     color: #fff;
-    height: 100vh;
+    height: 92vh;
     border-right: 5px solid #4d4d4d;
+    overflow-y: auto;
 }
 
 aside h3 {
-    margin-top: 30px;
+    margin-top: 0px;
     font-size: 30px;
 }
 
@@ -29,4 +36,32 @@ aside ul li:hover, aside ul a:hover {
     color: darkorange;
     text-decoration: none;
     transform: scale(1.05);
+}
+
+
+main {
+    float: right;
+    width: 85%;
+    height: 92%;
+}
+
+#menu {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu a {
+    text-decoration: none;
+    border-bottom: dashed 1px;
+}            
+
+a.active {
+    color: #000;
+}
+
+#ymapid {
+    height: 600px;
+    width: 800px;
 }
