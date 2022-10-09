@@ -14,7 +14,7 @@ def geo(request):
     if request.method == 'GET' and request.GET.get('ids') is not None:
         idnum = int(request.GET.get('ids'))
         data = Geom.objects.get(ids=idnum)
-        return HttpResponse(data.keypoints)
+        return HttpResponse(data.keypoints+"*"+data.keypointsplaned)
     else:
         data = Geom.objects.all()
         return render(request, 'main/geo.html', {'data': data})

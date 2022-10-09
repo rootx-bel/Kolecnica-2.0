@@ -1,9 +1,10 @@
 from django.db import models
-
+import datetime
 class Geom(models.Model):
     ids = models.IntegerField(default=0, name="ids")
     keypoints = models.TextField(max_length=20000, name="keypoints", default="")
     keypointsplaned = models.TextField(max_length=20000, name="keypointsplaned", default="")
+    datekey = models.DateTimeField(default=datetime.datetime.now())
     
     def __str__(self):
         return str(self.ids)

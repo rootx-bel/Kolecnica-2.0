@@ -1,65 +1,5 @@
-// function draw(ids){
-//     alert('fak')
-// }
-// var myMap, myCollection;
-
-// ymaps.ready(function  () {
-
-// 	myMap = new ymaps.Map('ymapid', {
-//                     center: [56.3241,44.0014],
-//                     zoom: 15,
-// 					behaviors: ["scrollZoom","drag"]
-//                 });	
-				
-// 	myCollection = new ymaps.GeoObjectCollection();			
-				
-// 	$.ajax({
-// 	url:'/static/a.csv',
-// 			success: function(data){
-// 			var rows = data.split("\n");
-// 			var src_res='';
-// 			for(var i in rows){
-// 			var colls=rows[i].split(";");//или другой символ разделитель
-			
-// 			// Устанавливаем координаты и содержимое балуна
-// 			myPlacemark = new ymaps.Placemark([colls[5], colls[4]], {
-//                     // Свойства 
-// 					iden: colls[0],
-// 					iconContent: colls[0],
-//                     balloonContentHeader: '<div style="color:#ff0303;font-weight:bold">'+colls[1]+'</div>',
-//                     balloonContentBody: '<div style="font-size:10px;"><strong>Адрес:</strong> '+colls[2]+'<br /><strong>Телефон:</strong> '+colls[3]+'</div>'              
-//                 }, {
-//                     // Опции
-//                     preset: 'twirl#lightblueIcon'
-//                 });
-
-//              myCollection.add(myPlacemark);
-			
-// 			$('#menu').append('<li>'+colls[0]+'. '+'<a href="#" onClick="return go_point('+colls[0]+");"+'\">'+colls[1]+'</a></li>');
-// 			}
-// 			myMap.geoObjects.add(myCollection);
-			
-// 			myMap.setBounds(myCollection.getBounds());
-// 			}
-	
-	
-// 	});			
-
-// });
-
-// function go_point(id){
-// myCollection.each(function (item) {
-// if (item.properties.get('iden') == id) {
-// var coord = item.geometry.getCoordinates();
-// myMap.setCenter(coord, 16);
-// item.balloon.open();
-// }
-// });	
-// }
-
-
-
-var myMap, myCollection, ids, params, result, counter, res, idm;
+let myMap, myCollection, ids, params, result, counter, res, idm, counterl, flag;
+flag = false;
 function httpGet(theUrl, params)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -67,14 +7,6 @@ function httpGet(theUrl, params)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-  }
 
 ymaps.ready(function  () {
 	myMap = new ymaps.Map('ymapid', {
@@ -86,9 +18,16 @@ ymaps.ready(function  () {
 });
 
 function draw(ids){
-    result = httpGet('http://176.194.177.53:2121/geo', ids);
+    result = httpGet('http://127.0.0.1/geo', ids);
     $('#menu').empty();
-    var rows = result.split(";");
+    $('#menul').empty();
+    if(flag){
+        myCollection.removeAll();
+        myMap.geoObjects.add(myCollection);
+    }
+    flag = true;
+    let koordspl = result.split("*");
+    var rows = koordspl[0].split(";");
 	var src_res='';
     counter = 1;
 	for(var i in rows){
@@ -97,7 +36,7 @@ function draw(ids){
                 iden: counter,
                 iconContent: counter,
                 balloonContentHeader: '<div style="color:#ff0303;font-weight:bold">'+colls[0]+':'+colls[1]+'</div>',
-                balloonContentBody: '<div style="font-size:10px;"><strong>Адрес:</strong> '+colls[0]+'<br /><strong>Телефон:</strong> '+colls[1]+'</div>'              
+                balloonContentBody: '<div style="font-size:10px;"><strong>Температура:</strong> '+colls[2]+'</div>'              
             }, {
                 preset: 'twirl#lightblueIcon'
         });
@@ -105,37 +44,26 @@ function draw(ids){
         $('#menu').append('<li>'+counter+'. '+'<a href="#" onClick="return go_point('+counter+");"+'\">'+colls[0]+':'+colls[1]+'</a></li>');
         counter++;
     }
+
+    var rowsl = koordspl[1].split(";");
+	var src_resl='';
+    counterl = 11;
+	for(var i in rowsl){
+	    var collsl=rowsl[i].split("&");
+		myPlacemark = new ymaps.Placemark([collsl[0], collsl[1]], {
+                iden: counterl,
+                iconContent: counterl,
+                balloonContentHeader: '<div style="color:#ff0303;font-weight:bold">'+collsl[0]+':'+collsl[1]+'</div>'            
+            }, {
+                preset: 'twirl#lightredIcon'
+        });
+        myCollection.add(myPlacemark);
+        $('#menul').append('<li>'+counterl+'. '+'<a href="#" onClick="return go_point('+counterl+");"+'\">'+collsl[0]+':'+collsl[1]+'</a></li>');
+        counterl+=10;
+    }
+
     myMap.geoObjects.add(myCollection);
     myMap.setBounds(myCollection.getBounds());
-    //setTimeout(() => { ; }, 2000);
-    //sleep(2000);
-    //upd(result, ids);
-    // $.ajax({
-	//     url:'/static/a.csv',
-	// 	success: function(data){
-	// 	var rows = data.split("\n");
-	// 	var src_res='';
-	// 	for(var i in rows){
-	// 	var colls=rows[i].split(";");
-	// 	myPlacemark = new ymaps.Placemark([colls[5], colls[4]], {
-	// 				iden: colls[0],
-	// 				iconContent: colls[0],
-    //                 balloonContentHeader: '<div style="color:#ff0303;font-weight:bold">'+colls[1]+'</div>',
-    //                 balloonContentBody: '<div style="font-size:10px;"><strong>Адрес:</strong> '+colls[2]+'<br /><strong>Телефон:</strong> '+colls[3]+'</div>'              
-    //             }, {
-    //                 // Опции
-    //                 preset: 'twirl#lightblueIcon'
-    //             });
-
-    //          myCollection.add(myPlacemark);
-			
-	// 		$('#menu').append('<li>'+colls[0]+'. '+'<a href="#" onClick="return go_point('+colls[0]+");"+'\">'+colls[1]+'</a></li>');
-	// 		}
-	// 		myMap.geoObjects.add(myCollection);
-			
-	// 		myMap.setBounds(myCollection.getBounds());
-	// 		}
-	// });
 }
 
 function go_point(id){
@@ -146,15 +74,4 @@ function go_point(id){
         item.balloon.open();
     }
     });	
-}
-
-function upd(res, idm){
-    if(res==httpGet('http://176.194.177.53:2121/geo', idm)){
-        //setTimeout(() => { ; }, 2000);
-        sleep(2000);
-        upd(res, idm);
-    }
-    else{
-        draw(idm);
-    }
 }

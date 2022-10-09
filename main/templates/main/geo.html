@@ -17,7 +17,7 @@
         <h3>Навигация</h3>
         <ul>
             {% for i in data %}
-            <a onClick="draw({{ i.ids }})"><li>{{ i.ids }}:{{ i.ids }}время</li></a>
+            <a onClick="draw({{ i.ids }})"><li>{{ i.ids }}:{{ i.datekey }}</li></a>
             {% endfor %}
         </ul>
     </aside>
@@ -25,6 +25,7 @@
         <table>
             <td valign="top"><div id="ymapid"></div></td>
             <td valign="top"><ul id="menu"></ul></td>
+            <td valign="top"><ul id="menul"></ul></td>
         </table>
     </main>
 </geo>
