@@ -55,7 +55,7 @@ function draw(ids){
                 iconContent: counterl,
                 balloonContentHeader: '<div style="color:#ff0303;font-weight:bold">'+collsl[0]+':'+collsl[1]+'</div>'            
             }, {
-                preset: 'twirl#lightredIcon'
+                preset: 'twirl#redIcon'
         });
         myCollection.add(myPlacemark);
         $('#menul').append('<li>'+counterl+'. '+'<a href="#" onClick="return go_point('+counterl+");"+'\">'+collsl[0]+':'+collsl[1]+'</a></li>');
@@ -70,7 +70,7 @@ function go_point(id){
     myCollection.each(function (item) {
     if (item.properties.get('iden') == id) {
         var coord = item.geometry.getCoordinates();
-        myMap.setCenter(coord, 16);
+        myMap.setCenter(coord, 14);
         item.balloon.open();
     }
     });	

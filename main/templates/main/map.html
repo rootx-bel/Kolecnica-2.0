@@ -2,6 +2,14 @@
 {% if not user.is_authenticated %}
 <meta http-equiv="refresh" content="0; URL=/" />
 {% endif %}
+{% load static %}
+{% block head %}
+{% comment %} <link href="{% static "/main.css" %}" rel="stylesheet"> {% endcomment %}
+<link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
+<script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+<script src="http://yandex.st/jquery/1.9.1/jquery.min.js"></script>
+{% comment %} <script src="{% static "/history.js" %}"></script> {% endcomment %}
+{% endblock head %}
 {% block body %}
-<h3 style="margin-top: 100px;">MAp</h3>
+{% csrf_token %}
 {% endblock body %}
