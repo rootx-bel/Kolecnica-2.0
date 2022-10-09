@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Добавление точки</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://api-maps.yandex.ru/1.1/index.xml?key=AIW0o0kBAAAAkwyUMwMAEkDz8ddCkU0UnlyLEu4ddFBXhQQAAAAAAAAAAAA1Md4ULCo5QbciEo5T26eV1lhuEQ==" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+		 var map;
+		 function init () {
+		   map = new YMaps.Map( document.getElementById("YMapsID") );
+		   map.setCenter(new YMaps.GeoPoint(43.979459,56.291908), 15, 
+				  YMaps.MapType.MAP);
+			YMaps.Events.observe(map, map.Events.Click, function (map, mEvent) {
+var myHtml = "Значение: " + mEvent.getGeoPoint() + " "
++'<form id="formadd" action="outpoint.php" method="post">
+Название: <input maxlength="80" name="namepoint" size="20" type="text" />
+Описание: <textarea cols="20" rows="5" name="descriptpoint"></textarea>
+<input name="pcoord" type="hidden" value="'+mEvent.getGeoPoint()+'" />
+<input name="subpoint" type="submit" value="Добавить" />
+</form>';
+map.openBalloon(mEvent.getGeoPoint(), myHtml);
+});
+            map.addControl(new YMaps.TypeControl());
+            map.addControl(new YMaps.ToolBar());
+            map.addControl(new YMaps.Zoom());
+ 
+}
+ 
+</script>
+</head>
+<body onload="init();">
+		<div id="YMapsID" style="width:600px; height:400px;"></div>
+</body>
+</html>
