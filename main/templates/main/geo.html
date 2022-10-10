@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
-{% if not user.is_authenticated %}
-<meta http-equiv="refresh" content="0; URL=/" />
-{% endif %}
 {% load static %}
 {% block head %}
 <link href="{% static "/main.css" %}" rel="stylesheet">
 <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
-<script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=e7bedf54-ce37-4a49-9a43-394bec08b6bd" type="text/javascript"></script>
 <script src="http://yandex.st/jquery/1.9.1/jquery.min.js"></script>
 <script src="{% static "/history.js" %}"></script>
 {% endblock head %}
 {% block body %}
-{% csrf_token %}
 <geo>
     <aside>
         <h3>Навигация</h3>

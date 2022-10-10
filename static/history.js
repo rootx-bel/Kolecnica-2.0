@@ -12,8 +12,9 @@ ymaps.ready(function  () {
 	myMap = new ymaps.Map('ymapid', {
                     center: [50.5907, 36.5802],
                     zoom: 13,
-					behaviors: ["scrollZoom","drag"]
-                })
+					behaviors: ["scrollZoom","drag"],
+                    controls: ['smallMapDefaultSet']
+                });
     myCollection = new ymaps.GeoObjectCollection();	
 });
 
@@ -38,7 +39,7 @@ function draw(ids){
                 balloonContentHeader: '<div style="color:#ff0303;font-weight:bold">'+colls[0]+':'+colls[1]+'</div>',
                 balloonContentBody: '<div style="font-size:10px;"><strong>Температура:</strong> '+colls[2]+'</div>'              
             }, {
-                preset: 'twirl#lightblueIcon'
+                preset: 'islands#blueIcon'
         });
         myCollection.add(myPlacemark);
         $('#menu').append('<li>'+counter+'. '+'<a href="#" onClick="return go_point('+counter+");"+'\">'+colls[0]+':'+colls[1]+'</a></li>');
@@ -55,7 +56,7 @@ function draw(ids){
                 iconContent: counterl,
                 balloonContentHeader: '<div style="color:#ff0303;font-weight:bold">'+collsl[0]+':'+collsl[1]+'</div>'            
             }, {
-                preset: 'twirl#redIcon'
+                preset: 'islands#redIcon'
         });
         myCollection.add(myPlacemark);
         $('#menul').append('<li>'+counterl+'. '+'<a href="#" onClick="return go_point('+counterl+");"+'\">'+collsl[0]+':'+collsl[1]+'</a></li>');
