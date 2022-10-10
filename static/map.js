@@ -16,7 +16,7 @@ function init(){
 
     myMap.events.add('click', function (e) {
             var coords = e.get('coords');
-            hist[counter] = coords;
+            hist[counter] = [coords[0].toPrecision(6), coords[1].toPrecision(6)];
             // alert(coords[0].toPrecision(6)+" "+coords[1].toPrecision(6));
             myPlacemark = new ymaps.Placemark(coords, {
                 iden: counter+1,
@@ -30,6 +30,13 @@ function init(){
             counter++;
         });
 }
+function httpGet(theUrl, params)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl+"?keys="+params, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
 function clea() {
     counter = 0;
     myCollection.removeAll();
@@ -41,5 +48,6 @@ function bound() {
     myMap.setBounds(myCollection.getBounds());
 }
 function sendm() {
-    console.log(hist);
+    // console.log(hist);
+    httpGet('http://127.0.0.1/comm', hist);
 }

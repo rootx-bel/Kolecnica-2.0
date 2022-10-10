@@ -5,7 +5,8 @@ class Geom(models.Model):
     keypoints = models.TextField(max_length=20000, name="keypoints", default="")
     keypointsplaned = models.TextField(max_length=20000, name="keypointsplaned", default="")
     datekey = models.DateTimeField(default=datetime.datetime.now())
-    
+    numpoints = models.IntegerField(default=0, name="numpoints")
+    numpointspl = models.IntegerField(default=0, name="numpointspl")
     def __str__(self):
         return str(self.ids)
 
@@ -16,7 +17,6 @@ class Geom(models.Model):
 class Route(models.Model):
     ids = models.IntegerField(default=0, name="ids")
     points = models.TextField(max_length=20000, name="points", default="")
-    
     def __str__(self):
         return str(self.ids)
 
