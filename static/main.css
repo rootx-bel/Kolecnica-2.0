@@ -7,7 +7,7 @@ geo {
 aside {
     float: left;
     background: #2c2c2c;
-    width: 15%;
+    width: 20%;
     padding: 2.5%;
     color: #fff;
     height: 92vh;
@@ -41,8 +41,13 @@ aside ul li:hover, aside ul a:hover {
 
 main {
     float: right;
-    width: 85%;
-    height: 92%;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(40, 40, 40);
+}
+
+table {
+    color: white;
 }
 
 #menu {
@@ -80,4 +85,8 @@ a.active {
 #ymapid {
     height: 600px;
     width: 800px;
+}
+
+#menul {
+    margin-left: 30px;
 }

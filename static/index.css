@@ -1,0 +1,49 @@
+main {
+    background-color: rgb(40, 40, 40);
+    width: 100%;
+    float: left;
+    width: 50%;
+    height: 88vh;
+    padding: 2.5%;
+    border-right: 5px solid #4d4d4d;
+    overflow-y: auto;
+}
+
+span1 {
+    font-size: calc(1.3rem + 0.6vw);
+    display: inline-block;
+    color: white;
+    margin-top: 0px;
+    /* margin-bottom: 0.5rem; */
+    font-weight: 500;
+    line-height: 1.2;
+    transition: transform 0.6s ease;
+    margin-left: 0em;
+    /* margin-right: 0.8em; */ 
+    text-align: left;
+    
+}
+
+span1:hover{
+    color:rgb(33, 163, 199);
+    transform: scale(1.05);
+    cursor:pointer
+    }
+
+aside {
+    background-color: rgb(40, 40, 40);
+    height: 88vh;
+    width: 50%;
+    float: right;
+}
+
+div
+  {
+    width: 100%;
+    height: inherit;
+  }
+img {
+  object-fit: contain;
+  width: inherit;
+  height: inherit;
+  }
